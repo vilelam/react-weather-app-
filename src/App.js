@@ -28,7 +28,7 @@ class App extends React.Component {
 
     const data = await api_call.json();
 
-    if(city && country){
+    if (city && country) {
       this.setState({
         temperature: data.main.temp,
         city: data.name,
@@ -37,37 +37,45 @@ class App extends React.Component {
         description: data.weather[0].description,
         error: ""
       });
-  
+
       console.log(data);
-    } else{
-      this.setState(
-
-        {
-          temperature: undefined,
-          city: undefined,
-          country: undefined,
-          humidity: undefined,
-          description: undefined,
-          error: 'please enter a value'
-        }
-      );
+    } else {
+      this.setState({
+        temperature: undefined,
+        city: undefined,
+        country: undefined,
+        humidity: undefined,
+        description: undefined,
+        error: "please enter a value"
+      });
     }
-
   };
 
   render() {
     return (
       <div>
-        <Titles />
-        <Form getWeather={this.getWeather} />
-        <Weather
-          temperature={this.state.temperature}
-          city={this.state.city}
-          country={this.state.country}
-          humidity={this.state.humidity}
-          description={this.state.description}
-          error = {this.state.error}
-        />
+        <div className="wrapper">
+          <div className="main">
+            <div className="container">
+              <div className="row">
+                <div className="col-xs-5 title-container">
+                  <Titles />
+                </div>
+                <div className="col-xs-7 form-container">
+                  <Form getWeather={this.getWeather} />
+                  <Weather
+                    temperature={this.state.temperature}
+                    city={this.state.city}
+                    country={this.state.country}
+                    humidity={this.state.humidity}
+                    description={this.state.description}
+                    error={this.state.error}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
